@@ -1,27 +1,23 @@
 package haywood.tom;
 
 import haywood.tom.application.AddressBookRepl;
-import haywood.tom.application.CommandProcessor;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Configuration;
-import java.util.Collection;
 
 @SpringBootApplication
-@Configuration
 public class Application implements CommandLineRunner {
 
-    private Collection<CommandProcessor> commandProcessors;
+    private final AddressBookRepl addressBookRepl;
 
-    public Application(Collection<CommandProcessor> commandProcessors) {
-        this.commandProcessors = commandProcessors;
+    public Application(AddressBookRepl addressBookRepl) {
+        this.addressBookRepl = addressBookRepl;
     }
 
     @Override
     public void run(String... args) {
-        new AddressBookRepl(commandProcessors, System.in, System.out).run();
+        addressBookRepl.run();
     }
 
     public static void main(String[] args) {

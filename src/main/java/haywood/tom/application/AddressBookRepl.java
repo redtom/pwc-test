@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import haywood.tom.model.AddressBook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Collection;
@@ -16,14 +17,15 @@ import java.util.function.Function;
 import static java.util.stream.Collectors.toMap;
 
 /**
- * Address book REPl class
+ * Address book REPL class
  * 
- * Takes a collection of CommandProcessor objects. These processors are
- * used to generate a menu that is repeatedly shown to the user. The input
- * is then used to lookup which processor should process the command. Control
- * then passes to the processor. This continues until a processor returns
+ * A collection of CommandProcessor objects are autowired on construction.
+ * These processors are used to generate a menu that is repeatedly shown to the user.
+ * The input is then used to lookup which processor should process the command.
+ * Control then passes to the processor. This continues until a processor returns
  * false, indicating the application should be exited.
  */
+@Component
 public class AddressBookRepl {
 
     private final Logger logger = LoggerFactory.getLogger(getClass().getSimpleName());
@@ -37,13 +39,6 @@ public class AddressBookRepl {
 
     private AddressBook openAddressBook;
 
-    /**
-     * Construct the application.
-     * 
-     * @param commandProcessorCollection All of the command processors
-     * @param inputStream where to take input from
-     * @param outputStream where to send output to
-     */
     public AddressBookRepl(Collection<CommandProcessor> commandProcessorCollection, InputStream inputStream, PrintStream outputStream) {
         this.inputScanner = new Scanner(inputStream);
         this.outputStream = outputStream;
@@ -74,10 +69,7 @@ public class AddressBookRepl {
         
         return builder.toString();
     }
-    
-    /**
-     * Run the application.
-     */
+
     public void run() {
         boolean continueExecution = false;
         do {

@@ -1,7 +1,7 @@
 package haywood.tom.application;
 
 /**
- * Abstract implementation of an ICommandProcessor.
+ * Abstract implementation of an CommandProcessor.
  * Does not allow execution if the command needs an open address book and there is not one open.
  */
 public abstract class AbstractCommandProcessor implements CommandProcessor {

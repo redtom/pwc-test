@@ -9,13 +9,13 @@ import java.util.Collection;
 import static java.util.stream.Collectors.toList;
 
 /**
- * Simple implementation of AddressBookAnalyser that makes uses of google quava.
+ * Simple implementation of AddressBookAnalyser that makes uses of google guava.
  */
 @Component
 public class AddressBookAnalyserImpl implements AddressBookAnalyser {
 
     @Override
-    public Collection<String> getSymmetricDifference(AddressBook book1, AddressBook book2) {        
+    public Collection<String> getSymmetricDifference(AddressBook book1, AddressBook book2) {
         return Sets.symmetricDifference(
             Sets.newHashSet(book1.getAllEntries()),
             Sets.newHashSet(book2.getAllEntries())
